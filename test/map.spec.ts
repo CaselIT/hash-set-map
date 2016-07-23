@@ -45,8 +45,8 @@ test('Map tests', t => {
       sst.plan(fns.length + 1 + entries.length);
       fns.forEach(fn => sst.equal(map[fn], HashMap.prototype[fn], `Custom ${fn} is used`));
       sst.equal(map.size, 3, 'The item where added to the map using the custom hash fn');
-      for (const [key, value] of entries)
-        sst.ok(map.has(key), 'All item where added');
+      for (let entry of entries)
+        sst.ok(map.has(entry[0]), 'All item where added');
       sst.end();
     });
   });
@@ -132,24 +132,24 @@ test('Map tests', t => {
     st.test('No hash fn', sst => {
       const set = new HashMap<Date, number>();
       sst.plan(1 + entries.length);
-      for (const [key, value] of entries)
-        set.set(key, value);
+      for (let entry of entries)
+        set.set(entry[0], entry[1]);
       sst.equal(set.size, entries.length, 'All item where added');
-      for (const [key, value] of entries)
-        sst.equal(set.get(key), value, 'The value is correct');
+      for (let entry of entries)
+        sst.equal(set.get(entry[0]), entry[1], 'The value is correct');
       sst.end();
     });
     st.test('Custom hash fn', sst => {
       const set = new HashMap<Date, number>(dateHash);
       sst.plan(1 + entries.length);
-      for (const [key, value] of entries)
-        set.set(key, value);
+      for (let entry of entries)
+        set.set(entry[0], entry[1]);
       sst.equal(set.size, entries.length - 1, 'Only different item where added');
-      for (const [key, value] of entries)
-        if (key.valueOf() === 1 && value === 1)
-          sst.notEqual(set.get(key), value, 'The value is updated to the by the second set');
+      for (let entry of entries)
+        if (entry[0].valueOf() === 1 && entry[1] === 1)
+          sst.notEqual(set.get(entry[0]), entry[1], 'The value is updated to the by the second set');
         else
-          sst.equal(set.get(key), value, 'The value is correct');
+          sst.equal(set.get(entry[0]), entry[1], 'The value is correct');
       sst.end();
     });
   });
@@ -210,10 +210,10 @@ test('Map tests', t => {
       const entries: [string, number][] = [[new Date(1).toJSON(), 1], [new Date(2).toJSON(), 2], [new Date(3).toJSON(), 3], [new Date(1).toJSON(), 5]];
       const map = HashMap.fromJSON<Date, number>(entries, { keyParser: dateParser, hash: dateHash });
       sst.plan(instanceAndSize(sst, map, entries.slice(0, 3)) + entries.length + map.size);
-      for (const [key, value] of map) {
-        sst.ok(key instanceof Date, 'Item was parsed');
+      for (let entry of map) {
+        sst.ok(entry[0] instanceof Date, 'Item was parsed');
       }
-      for (const entry of entries)
+      for (let entry of entries)
         sst.ok(map.has(new Date(entry[0])), 'The item was added to the Map');
       sst.end();
     });

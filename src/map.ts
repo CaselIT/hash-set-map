@@ -35,7 +35,7 @@ export default class HashMap<K, V> extends Map<K, V> {
       ['clear', 'delete', 'get', 'has', 'set'].forEach(fn => this[fn] = super[fn]);
     }
     if (iterable && iterable[Symbol.iterator] instanceof Function)
-      for (const entry of iterable as Iterable<[K, V]>)
+      for (let entry of iterable as Iterable<[K, V]>)
         this.set(entry[0], entry[1]);
   }
   /** Removes all the elements in the set. */

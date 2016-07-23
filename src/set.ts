@@ -35,7 +35,7 @@ export default class HashSet<T> extends Set<T> {
       ['add', 'clear', 'delete', 'has'].forEach(fn => this[fn] = super[fn]);
     }
     if (iterable && iterable[Symbol.iterator] instanceof Function)
-      for (const item of iterable as Iterable<T>)
+      for (let item of iterable as Iterable<T>)
         this.add(item);
   }
   /**
