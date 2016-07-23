@@ -1,0 +1,64 @@
+{
+  "name": "comparable-set-map",
+  "version": "1.0.0",
+  "description": "Set and map classes extended with the custom comparable function",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "dependencies": {
+    "coveralls": "^2.11.11",
+    "istanbul": "^0.4.4",
+    "tape": "^4.6.0",
+    "tslint": "^3.13.0",
+    "typings": "^1.3.2"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "coveralls": "^2.11.11",
+    "istanbul": "^0.4.4",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0",
+    "tslint": "^3.13.0",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.2"
+  },
+  "scripts": {
+    "prebrowserify": "tsc",
+    "browserify": "browserify build/test/map.spec.js build/test/set.spec.js > test_bundle.js",
+    "cover": "istanbul cover node_modules/tape/bin/tape build/test/**/*.spec.js",
+    "coveralls": "npm run cover -- --report lcovonly | tap-spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "pretest": "tsc",
+    "test": "tape build/test/**/*.spec.js | tap-spec",
+    "tslint": "tslint index.ts ./test/**/.ts ./src/**/*.ts",
+    "typings": "typings i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaselIT/comparable-set-map.git"
+  },
+  "author": "Federico Caselli",
+  "license": "MIT",
+  "keywords": [
+    "Set",
+    "Map",
+    "ES6",
+    "toJSON",
+    "fromJSON",
+    "JSON",
+    "comparable",
+    "equals"
+  ],
+  "bugs": {
+    "url": "https://github.com/CaselIT/comparable-set-map/issues"
+  },
+  "homepage": "https://github.com/CaselIT/comparable-set-map#readme",
+  "files": [
+    "build/index*",
+    "build/src/**/*",
+    "LICENSE",
+    "README.md",
+    "typings.json"
+  ],
+  "engines": {
+    "node": ">=5.x"
+  }
+}

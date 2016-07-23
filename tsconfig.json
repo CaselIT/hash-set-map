@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "inlineSources": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "outDir": "./build",
+        "sourceMap": true,
+        "target": "es6"
+    },
+    "files": [
+        "index.ts",
+        "typings/index.d.ts",
+        "test/map.spec.ts",
+        "test/set.spec.ts"
+    ]
+}
