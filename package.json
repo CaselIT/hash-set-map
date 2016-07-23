@@ -34,13 +34,14 @@
   "license": "MIT",
   "keywords": [
     "Set",
+    "HashSet",
     "Map",
+    "HashMap",
     "ES6",
     "toJSON",
     "fromJSON",
-    "JSON",
     "comparable",
-    "equals"
+    "hash"
   ],
   "bugs": {
     "url": "https://github.com/CaselIT/hash-set-map/issues"
