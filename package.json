@@ -1,11 +1,10 @@
 {
   "name": "hash-set-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Set and map classes extended with the custom hash function",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^13.0.1",
     "coveralls": "^2.11.11",
