@@ -10,18 +10,18 @@ export default class HashSet<T> extends Set<T> {
    * Default set instance is created
    * @param {Iterable<T>} iterable Items to add to the set.
    */
-  constructor(iterable: Iterable<T>);
+  constructor(iterable: Iterable<T> | undefined);
   /** 
    * The provided hash function will be used to itentify the objects
    * @param {(item: T) => number | string} hash Function to create an item hash that can be used to identify it.
    */
-  constructor(hash: Hash<T>);
+  constructor(hash: Hash<T> | undefined);
   /** 
    * The provided hash function will be used to itentify the objects
    * @param {Iterable<T>} iterable Items to add to the set.
    * @param {(item: T) => number | string} hash Function to create an item hash that can be used to identify it.
    */
-  constructor(iterable: Iterable<T>, hash: Hash<T>);
+  constructor(iterable: Iterable<T> | undefined, hash: Hash<T> | undefined);
   constructor(iterable?: Iterable<T> | Hash<T>, hash?: Hash<T>) {
     super();
     if (arguments.length === 1 && iterable && iterable instanceof Function && !(iterable[Symbol.iterator] instanceof Function)) {
@@ -66,7 +66,7 @@ export default class HashSet<T> extends Set<T> {
   delete(value: T) {
     const hash = this.m_hash(value);
     if (this.m_hashMap.has(hash)) {
-      const item = this.m_hashMap.get(hash);
+      const item = this.m_hashMap.get(hash)!;
       this.m_hashMap.delete(hash);
       return super.delete(item);
     }

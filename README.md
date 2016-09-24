@@ -13,7 +13,7 @@ This library does not provides pilifills for Set and Map.
 ```sh
 npm i hash-set-map
 ```
-The current version supports `node v6.x` and `v5.x`. Tested on browsers `Chrome v52`, `Firefox v48` and `Edge v38`.
+The current version supports `node v6.x` and `v5.x`. Tested on browsers `Chrome v52+`, `Firefox v48+` and `Edge v38+`.
 
 ## Usage
 * Typescript and es6
@@ -57,9 +57,9 @@ map.get('C') // returns 42
 ```
 
 
-For the documentation on `toJSON` and `fromJSON` methods check [json-set-map](https://github.com/CaselIT/json-set-map#readme).
+For further documentation on `toJSON` and `fromJSON` methods refet to [json-set-map](https://github.com/CaselIT/json-set-map#readme).
 
-See the JSDoc on the files for mode details.
+Refer to the JSDoc documentation on the files for mode details.
 
 
 ### TODO

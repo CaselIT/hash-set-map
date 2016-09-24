@@ -15,13 +15,13 @@ export default class HashMap<K, V> extends Map<K, V> {
    * The provided hash function will be used to itentify the keys
    * @param {(item: K, other: K) => boolean} hash Function to create a key hash that can be used to identify it.
    */
-  constructor(hash: Hash<K>);
+  constructor(hash: Hash<K> | undefined);
   /** 
    * The provided hash function will be used to itentify the keys
    * @param {Iterable<[K, V]>} iterable Key-value pairs to add to the map.
    * @param {(item: K, other: K) => boolean} hash Function to create a key hash that can be used to identify it.
    */
-  constructor(iterable: Iterable<[K, V]>, hash: Hash<K>);
+  constructor(iterable: Iterable<[K, V]> | undefined, hash: Hash<K> | undefined);
   constructor(iterable?: Iterable<[K, V]> | Hash<K>, hash?: Hash<K>) {
     super();
     if (arguments.length === 1 && iterable && iterable instanceof Function && !(iterable[Symbol.iterator] instanceof Function)) {
@@ -52,7 +52,7 @@ export default class HashMap<K, V> extends Map<K, V> {
   delete(key: K) {
     const hash = this.m_hash(key);
     if (this.m_hashMap.has(hash)) {
-      const key = this.m_hashMap.get(hash);
+      const key = this.m_hashMap.get(hash)!;
       this.m_hashMap.delete(hash);
       return super.delete(key);
     }
@@ -67,7 +67,7 @@ export default class HashMap<K, V> extends Map<K, V> {
   get(key: K) {
     const hash = this.m_hash(key);
     if (this.m_hashMap.has(hash)) {
-      return super.get(this.m_hashMap.get(hash));
+      return super.get(this.m_hashMap.get(hash)!);
     }
     return undefined;
   }
@@ -91,7 +91,7 @@ export default class HashMap<K, V> extends Map<K, V> {
   set(key: K, value?: V) {
     const hash = this.m_hash(key);
     if (this.m_hashMap.has(hash)) {
-      const previousKey = this.m_hashMap.get(hash);
+      const previousKey = this.m_hashMap.get(hash)!;
       super.delete(previousKey);
     }
     this.m_hashMap.set(hash, key);
@@ -119,10 +119,9 @@ export default class HashMap<K, V> extends Map<K, V> {
     if (!options.keyParser && !options.valueParser)
       return new HashMap<K, V>(iterable, options.hash);
     const map = new HashMap<K, V>(options.hash);
-    const hasKeyParser = !!options.keyParser, hasValueParser = !!options.valueParser;
     for (let item of iterable)
-      map.set(hasKeyParser ? options.keyParser(item[0]) : item[0],
-        hasValueParser ? options.valueParser(item[1]) : item[1]);
+      map.set(options.keyParser ? options.keyParser(item[0]) : item[0],
+        options.valueParser ? options.valueParser(item[1]) : item[1]);
     return map;
   }
 }
