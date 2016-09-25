@@ -57,7 +57,7 @@ map.get('C') // returns 42
 ```
 
 
-For further documentation on `toJSON` and `fromJSON` methods refet to [json-set-map](https://github.com/CaselIT/json-set-map#readme).
+For further documentation on `toJSON` and `fromJSON` methods refer to [json-set-map](https://github.com/CaselIT/json-set-map#readme).
 
 Refer to the JSDoc documentation on the files for mode details.
 
