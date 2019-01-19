@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/CaselIT/hash-set-map/badge.svg?branch=master)](https://coveralls.io/github/CaselIT/hash-set-map?branch=master)
 
 # hash-set-map
-Extension of `Set` and `Map` classes to proved custom hash function support. It also provides the method `toJSON` and a static `fromJSON` to serialize and deserialize them.
+Extension of `Set` and `Map` classes to proved custom key serialisation function support. It also provides the method `toJSON` and a static `fromJSON` to serialize and deserialize them.
 
 The original `Set` and `Map` object are not modified, so can still be used.
 
@@ -13,7 +13,7 @@ This library does not provides pilifills for Set and Map.
 ```sh
 npm i hash-set-map
 ```
-The current version supports `node v6.x` and `v5.x`. Tested on browsers `Chrome v52+`, `Firefox v48+` and `Edge v38+`.
+The current version supports `node v5+`. Tested on browsers `Chrome v52+`, `Firefox v48+` and `Edge v38+`.
 
 ## Usage
 * Typescript and es6
@@ -39,10 +39,10 @@ let hashSet = new hSet()
 
 ## Example
 ```ts
-export function dateHash(d: Date) {
+export function dateToKey(d: Date) {
   return d.valueOf();
 }
-const set = new Set([new Date(1), new Date(1)], dateHash);
+const set = new Set([new Date(1), new Date(1)], dateToKey);
 set.size // size is 1
 set.has(new Date(1)) // returns true
 ```
@@ -60,7 +60,3 @@ map.get('C') // returns 42
 For further documentation on `toJSON` and `fromJSON` methods refer to [json-set-map](https://github.com/CaselIT/json-set-map#readme).
 
 Refer to the JSDoc documentation on the files for mode details.
-
-
-### TODO
-* Add support for `node v4.x`
