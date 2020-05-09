@@ -179,7 +179,7 @@ test('Map tests', t => {
     });
     st.test('Call with custom hash fn', sst => {
       const entries: [string, number][] = [['a', 2], ['b', 4], ['c', 4], ['C', 5]];
-      const map = HashMap.fromJSON<string, number>(entries, { hash: stringIgnoreCase });
+      const map = HashMap.fromJSON<string, number>(entries, { keyDerivation: stringIgnoreCase });
       sst.plan(instanceAndSize(sst, map, entries.slice(0, 3)) + 1 + 2 * entries.length);
       sst.ok(map.has('C'), 'Duplicate is ignored');
       for (let entry of entries) {
@@ -208,7 +208,7 @@ test('Map tests', t => {
     });
     st.test('Use keyParser and custom hash fn', sst => {
       const entries: [string, number][] = [[new Date(1).toJSON(), 1], [new Date(2).toJSON(), 2], [new Date(3).toJSON(), 3], [new Date(1).toJSON(), 5]];
-      const map = HashMap.fromJSON<Date, number>(entries, { keyParser: dateParser, hash: dateHash });
+      const map = HashMap.fromJSON<Date, number>(entries, { keyParser: dateParser, keyDerivation: dateHash });
       sst.plan(instanceAndSize(sst, map, entries.slice(0, 3)) + entries.length + map.size);
       for (let entry of map) {
         sst.ok(entry[0] instanceof Date, 'Item was parsed');

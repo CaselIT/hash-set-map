@@ -61,7 +61,7 @@ test('Set tests', t => {
       const set = new HashSet<Date>();
       sst.plan(1);
       for (let item of items)
-        set.add(item)
+        set.add(item);
       sst.equal(set.size, items.length, 'All item where added');
       sst.end();
     });
@@ -69,7 +69,7 @@ test('Set tests', t => {
       const set = new HashSet<Date>(dateHash);
       sst.plan(1);
       for (let item of items)
-        set.add(item)
+        set.add(item);
       sst.equal(set.size, items.length - 1, 'Only different item where added');
       sst.end();
     });
@@ -88,7 +88,7 @@ test('Set tests', t => {
       set.clear();
       sst.equal(set.size, 0, 'All item where removed');
       set.add(items[0]);
-      sst.equal(set.size, 1, 'Item could be readded');
+      sst.equal(set.size, 1, 'Item could be re-added');
       set.clear();
       sst.equal(set.size, 0, 'All item where removed');
       sst.end();
@@ -169,7 +169,7 @@ test('Set tests', t => {
     });
     st.test('Call with custom hash fn', sst => {
       const items: string[] = ['a', 'b', 'c', 'C'];
-      const set = HashSet.fromJSON<string>(items, { hash: stringIgnoreCase });
+      const set = HashSet.fromJSON<string>(items, { keyDerivation: stringIgnoreCase });
       sst.plan(2 + testNoParser(sst, set, items.slice(0, 3)));
       sst.ok(set.has('C'), 'Duplicate is ignored');
       sst.equal([...set.values()].indexOf('C'), -1, 'Duplicate not added in the set');
@@ -177,7 +177,7 @@ test('Set tests', t => {
     });
     st.test('Use parser and custom hash fn', sst => {
       const items: string[] = [new Date(1).toJSON(), new Date(2).toJSON(), new Date(3).toJSON(), new Date(1).toJSON()];
-      const set = HashSet.fromJSON<Date>(items, { hash: dateHash, parser: dateParser });
+      const set = HashSet.fromJSON<Date>(items, { keyDerivation: dateHash, parser: dateParser });
       sst.plan(instanceAndSize(sst, set, items.slice(0, 3)) + set.size + items.length);
       for (let setItem of set) {
         sst.ok(setItem instanceof Date, 'Item was parsed');

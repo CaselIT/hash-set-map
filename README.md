@@ -3,17 +3,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/CaselIT/hash-set-map/badge.svg?branch=master)](https://coveralls.io/github/CaselIT/hash-set-map?branch=master)
 
 # hash-set-map
-Extension of `Set` and `Map` classes to proved custom key serialisation function support. It also provides the method `toJSON` and a static `fromJSON` to serialize and deserialize them.
+`Set` and `Map` extension to prove a custom key derivation function. It also supports JSON serialization and de-serialization
 
 The original `Set` and `Map` object are not modified, so can still be used.
 
-This library does not provides pilifills for Set and Map.
+This library does not provides polyfills for Set and Map.
 
 ## Install
 ```sh
 npm i hash-set-map
 ```
-The current version supports `node v5+`. Tested on browsers `Chrome v52+`, `Firefox v48+` and `Edge v38+`.
+The current version supports `node v10+` and modern browsers.
 
 ## Usage
 * Typescript and es6
